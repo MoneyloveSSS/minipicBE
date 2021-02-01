@@ -12,7 +12,7 @@
 
 
     <modules>
-        <module>processing-desk</module>
+        <module>jpegoptim-processing-desk</module>
         <module>common</module>
     </modules>
 

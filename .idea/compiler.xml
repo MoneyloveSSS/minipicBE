@@ -8,7 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="common" />
-        <module name="processing-desk" />
+        <module name="jpegoptim-processing-desk" />
       </profile>
     </annotationProcessing>
   </component>

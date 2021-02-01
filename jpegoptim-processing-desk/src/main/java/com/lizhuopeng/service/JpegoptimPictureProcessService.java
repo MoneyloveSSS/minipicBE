@@ -13,7 +13,7 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class PictureProcessService {
+public class JpegoptimPictureProcessService {
 
     /**
      * 返回处理图片

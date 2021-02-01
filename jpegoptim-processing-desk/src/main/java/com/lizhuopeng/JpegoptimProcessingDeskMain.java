@@ -5,8 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class ProcessingDeskMain {
+public class JpegoptimProcessingDeskMain {
     public static void main(String[] args) {
-        SpringApplication.run(ProcessingDeskMain.class,args);
+        SpringApplication.run(JpegoptimProcessingDeskMain.class,args);
     }
 }

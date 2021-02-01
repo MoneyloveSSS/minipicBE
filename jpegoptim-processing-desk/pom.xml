@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>processing-desk</artifactId>
+    <artifactId>jpegoptim-processing-desk</artifactId>
 
     <dependencies>
 
