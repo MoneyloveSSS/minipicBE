@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="common" />
         <module name="jpegoptim-processing-desk" />
+        <module name="user-center" />
       </profile>
     </annotationProcessing>
   </component>

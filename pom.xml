@@ -14,6 +14,7 @@
     <modules>
         <module>jpegoptim-processing-desk</module>
         <module>common</module>
+        <module>user-center</module>
     </modules>
 
 
