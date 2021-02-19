@@ -4,6 +4,9 @@ package com.lizhuopeng.service;
 import com.lizhuopeng.dao.UserDao;
 import com.lizhuopeng.model.MiniPicUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AccountExpiredException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
@@ -23,13 +26,19 @@ public class MyUserDetailService implements UserDetailsService {
     @Autowired
     private UserDao userDao;
 
+    /**
+     * 查询数据库用户信息
+     * @param s
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         MiniPicUser user=userDao.getUserByUsername(s);
-        if(user==null) throw new UsernameNotFoundException("用户名不存在");
+        if(user==null) throw new UsernameNotFoundException(s+"用户名不存在");
 
-        List<GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList("guest");
 
-        return new User(user.getUsername(),passwordEncoder.encode(user.getPassword()),authorities);//目前数据库存了明文密码，将明文加密比较
+        return user.transferToSecurityUser();
     }
+
 }

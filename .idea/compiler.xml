@@ -7,10 +7,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="common" />
+        <module name="common-Api" />
         <module name="jpegoptim-processing-desk" />
         <module name="user-center" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="common" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
