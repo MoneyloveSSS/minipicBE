@@ -37,7 +37,6 @@ public class MyUserDetailService implements UserDetailsService {
         MiniPicUser user=userDao.getUserByUsername(s);
         if(user==null) throw new UsernameNotFoundException(s+"用户名不存在");
 
-
         return user.transferToSecurityUser();
     }
 
