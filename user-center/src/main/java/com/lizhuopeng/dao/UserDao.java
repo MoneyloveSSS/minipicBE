@@ -9,4 +9,12 @@ public interface UserDao {
      * @return
      */
     MiniPicUser getUserByUsername(String username);
+
+    /**
+     *
+     * 创建用户
+     * @param miniPicUser
+     * @return
+     */
+    int createUser (MiniPicUser miniPicUser);
 }

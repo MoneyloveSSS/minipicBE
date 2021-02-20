@@ -4,8 +4,20 @@
 <mapper namespace="com.lizhuopeng.dao.UserDao">
 
     <select id="getUserByUsername" parameterType="String" resultType="com.lizhuopeng.model.MiniPicUser">
-        select * from miniPicUser where username=#{username}
+        select * from mini_pic_user where username=#{username}
     </select>
+
+
+    <insert id="createUser" parameterType="com.lizhuopeng.model.MiniPicUser" useGeneratedKeys="true" keyProperty="id">
+        insert into mini_pic_user (`username`, `password`,
+        `gender`, `account_non_expired`, `account_non_locked`,
+        `enabled`, `update_time`, `create_time`
+        )
+        values (#{username}, #{password},
+        #{gender}, #{accountNonExpired}, #{accountNonLocked},
+        #{enabled}, #{updateTime}, #{createTime}
+        )
+    </insert>
 
 
 </mapper>
