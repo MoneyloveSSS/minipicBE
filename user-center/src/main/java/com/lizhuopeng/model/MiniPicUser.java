@@ -31,9 +31,7 @@ public class MiniPicUser {
 
     public User transferToSecurityUser(){
         List<GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList("guest");
-        /* 目前数据库存了明文密码，将明文加密比较*/
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return new User(this.username,bCryptPasswordEncoder.encode(this.password)
+        return new User(this.username,this.password
                 , this.enabled, this.accountNonExpired,true, this.accountNonLocked,authorities);
     }
 
