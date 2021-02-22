@@ -22,7 +22,7 @@ public class RegisterService {
     /**
      * 插入新用户
       * @param miniPicUser
-     * @return
+     * @return 插入成功返回1
      */
     public boolean createUser(MiniPicUser miniPicUser){
         Date now = new Date();
@@ -45,5 +45,15 @@ public class RegisterService {
             log.warn("错误！新用户[{}]于时间[{}]新建失败",miniPicUser.getUsername(),new Date());
             return false;
         }
+    }
+
+    /**
+     * 查询用户名是否重复，重复返回True
+     * @param username
+     * @return
+     */
+    public boolean checkUserNameDuplicate(String username){
+        MiniPicUser user = userDao.getUserByUsername(username);
+        return user != null;
     }
 }

@@ -8,18 +8,22 @@ import com.lizhuopeng.service.MyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -34,9 +38,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.cors();//关闭Sc跨域资源共享的保护，还需要甚至过滤器
+        httpSecurity.cors();//关闭Sc跨域资源共享的保护，还需要设置过滤器配置
         httpSecurity.csrf().disable()/*允许跨域*/
                 .authorizeRequests()
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll() //允许OPTIONS匿名访问
+                .antMatchers("/css/**", "/index").permitAll()
+
                 // 对注册要允许匿名访问;
                 .antMatchers(registerAPI).permitAll()
                 //其余请求全部需要登录后访问
@@ -55,6 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().exceptionHandling().authenticationEntryPoint(new AuthenticationEntryPointHandler());
 
     }
+
 
     /**
      * 配置查询数据库的user的service
@@ -80,13 +88,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * @return
      */
     @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080"));
-        configuration.setAllowedMethods(Arrays.asList("GET","POST"));
-        configuration.setAllowCredentials(true);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
+    public CorsFilter corsFilter() {
+        CorsConfiguration config = new CorsConfiguration();
+        config.addAllowedOrigin("http://localhost:8080");
+        config.setAllowCredentials(true);
+        config.addAllowedMethod("*");
+        config.addAllowedHeader("*");
+        UrlBasedCorsConfigurationSource configSource = new UrlBasedCorsConfigurationSource();
+        configSource.registerCorsConfiguration("/**", config);
+        return new CorsFilter(configSource);
     }
 }

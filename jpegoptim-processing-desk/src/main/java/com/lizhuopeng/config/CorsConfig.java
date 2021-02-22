@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Slf4j
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {
-    static final String[] METHODS = new String[]{"GET", "POST", "PUT", "DELETE"};
+    static final String[] METHODS = new String[]{"GET", "POST", "PUT", "DELETE","OPTIONS"};
 
 
     /**
