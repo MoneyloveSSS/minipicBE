@@ -35,6 +35,7 @@ public class MiniPicUser {
                 , this.enabled, this.accountNonExpired,true, this.accountNonLocked,authorities);
     }
 
+
     public int getId() {
         return id;
     }

@@ -7,6 +7,10 @@
         select * from mini_pic_user where username=#{username}
     </select>
 
+    <select id="getUserBasicInfoByUsername" parameterType="String" resultType="com.lizhuopeng.model.MiniPicUser">
+        select username,gender,create_time from mini_pic_user where username=#{username}
+    </select>
+
 
     <insert id="createUser" parameterType="com.lizhuopeng.model.MiniPicUser" useGeneratedKeys="true" keyProperty="id">
         insert into mini_pic_user (`username`, `password`,
