@@ -3,7 +3,6 @@ package com.lizhuopeng.model;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Date;
 import java.util.List;
@@ -14,7 +13,7 @@ public class MiniPicUser {
     private int id;
     private String username;
     private String password;
-    private int gender;
+    private boolean gender;
     private boolean accountNonExpired;
     private boolean accountNonLocked;
     private boolean enabled;
@@ -60,11 +59,11 @@ public class MiniPicUser {
         this.password = password;
     }
 
-    public int getGender() {
+    public boolean getGender() {
         return gender;
     }
 
-    public void setGender(int gender) {
+    public void setGender(boolean gender) {
         this.gender = gender;
     }
 
