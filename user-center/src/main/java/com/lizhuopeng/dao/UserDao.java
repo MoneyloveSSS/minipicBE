@@ -1,7 +1,9 @@
 package com.lizhuopeng.dao;
 
 import com.lizhuopeng.model.MiniPicUser;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UserDao {
     /**
      * 根据用户名得到用户

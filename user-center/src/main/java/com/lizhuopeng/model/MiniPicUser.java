@@ -1,14 +1,16 @@
 package com.lizhuopeng.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 
-public class MiniPicUser {
+public class MiniPicUser implements Serializable {
 
     private int id;
     private String username;
@@ -17,7 +19,17 @@ public class MiniPicUser {
     private boolean accountNonExpired;
     private boolean accountNonLocked;
     private boolean enabled;
+
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date updateTime;
+
+    @JsonFormat(
+            pattern = "yyyy年MM月dd日 HH:mm:ss",
+            timezone = "GMT+8"
+    )
     private Date createTime;
 
     public MiniPicUser(String username, String password) {
