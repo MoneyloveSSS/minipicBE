@@ -4,6 +4,8 @@ server:
 
 
 spring:
+  application:
+    name: user-center
 
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -34,3 +36,20 @@ mybatis:
   mapperLocations: classpath:mapper/*.xml
   type-aliases-package: com.lizhuopeng.model
   config-location: classpath:Mybatis-conf.xml
+
+
+eureka:
+  client:
+    register-with-eureka: true #是否将自己注册进Eureka
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://localhost:11001/eureka,http://localhost:11002/eureka #将自己注册到哪，注册中心Eureka的地址
+
+
+ribbon:
+  ReadTimeout:  5000
+  ConnectTimeout: 5000
+
+logging:
+  level:
+    com.lizhuopeng.feign.JpegoptimProcessingDeskFeign: debug #指定具体接口在哪个环境下打印日志

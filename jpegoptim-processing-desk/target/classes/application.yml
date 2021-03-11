@@ -1,8 +1,10 @@
 server:
-  port: 9000
+  port: 9001
 
 
 spring:
+  application:
+    name: jpegoptim-processing-desk
 
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -39,3 +41,10 @@ management:
     web:
       exposure:
         include: '*'
+
+eureka:
+  client:
+    register-with-eureka: true #是否将自己注册进Eureka
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://localhost:11001/eureka,http://localhost:11002/eureka
