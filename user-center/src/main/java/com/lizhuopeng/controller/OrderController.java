@@ -10,11 +10,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 @RestController
 @Slf4j
@@ -25,6 +26,30 @@ public class OrderController {
 
     @Resource
     private JpegoptimProcessingDeskFeign jpegoptimProcessingDeskFeign;
+
+    /**
+     * RPC压缩图片，生成订单信息
+     * @param picture
+     * @return
+     * @throws IOException
+     */
+    @PostMapping("user/makeMiniPicOrder")
+    public byte[] img(@RequestPart("picture") MultipartFile picture) throws IOException {
+        User login_user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        int id = orderService.insertOrder(login_user, picture.getOriginalFilename());
+        byte[] img = new byte[0];
+        if(id != -1){
+            try {
+                img = jpegoptimProcessingDeskFeign.img(picture);
+            }catch (Exception e){
+                log.warn("调用服务jpegoptim-processing-desk出现错误,用户名[{}],文件名[{}]",login_user.getUsername(),picture.getOriginalFilename());
+                orderService.setOrderDiscard(id);
+            }
+        }
+        return img;
+
+    }
+
 
 
     /**

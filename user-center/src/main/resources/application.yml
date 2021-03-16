@@ -31,6 +31,11 @@ spring:
         login-password: 123456
       aop-patterns: com.lizhuopeng
 
+  servlet:
+    multipart:
+      max-file-size: 10MB #设置限制上传文件的大小
+      max-request-size: 100MB
+
 
 mybatis:
   mapperLocations: classpath:mapper/*.xml

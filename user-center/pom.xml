@@ -13,6 +13,17 @@
 
     <dependencies>
 
+        <!--feign-form-->
+        <dependency>
+            <groupId>io.github.openfeign.form</groupId>
+            <artifactId>feign-form</artifactId>
+        </dependency>
+        <!--配合spring使用-->
+        <dependency>
+            <groupId>io.github.openfeign.form</groupId>
+            <artifactId>feign-form-spring</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.lizhuopeng</groupId>
             <artifactId>common-Api</artifactId>

@@ -19,12 +19,12 @@ public class JpegoptimController {
     /**
      * jpegoptim压缩图片api
      * @param picture
-     * @param request
+
      * @return
      * @throws IOException
      */
     @PostMapping("/updatePic")
-    public byte[] img(@RequestParam("picture") MultipartFile picture, HttpServletRequest request) throws IOException {
+    public byte[] img(@RequestPart("picture") MultipartFile picture) throws IOException {
         log.info("message come {}",picture);
         return jpegoptimPictureProcessService.processingPic(picture.getBytes());
     }

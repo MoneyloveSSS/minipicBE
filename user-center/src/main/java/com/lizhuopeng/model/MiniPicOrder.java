@@ -72,6 +72,15 @@ public class MiniPicOrder implements Serializable {
         this.imgName = imgName;
     }
 
+    public MiniPicOrder(String username, boolean isPaid, Integer amountOfMoney, Date createTime, Date updateTime, String imgName) {
+        this.username = username;
+        this.isPaid = isPaid;
+        this.amountOfMoney = amountOfMoney;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.imgName = imgName;
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
