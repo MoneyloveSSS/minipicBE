@@ -21,19 +21,14 @@ public class UserInfoController {
 
     /**
      * 根据用户名得到用户基础信息
-      * @param username
-     * @return username,gender,createTime
+     * @return
      */
     @GetMapping("user/getBasicInfo")
-    public DataResult getBasicInfo(@RequestParam("username") String username){
+    public DataResult getBasicInfo(){
         //验证是否查询的是本人账户的信息
         User login_user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(!username.equals(login_user.getUsername())){
-            log.warn("用户名[{}]正查询不属于自己的账号信息[{}]",login_user.getUsername(),username);
-            return DataResult.serverError("非法查询");
-        }
-        MiniPicUser user = userInfoService.getUserBasicInfoByUsername(username);
-        log.info("查询用户[{}]的基本信息",username);
+        MiniPicUser user = userInfoService.getUserBasicInfoByUsername(login_user.getUsername());
+        log.info("查询用户[{}]的基本信息",login_user.getUsername());
         if(user== null){
             return new DataResult().setCode(RespCode.NOTFOUND.getCode()).setMessage("该用户不存在");
         }
