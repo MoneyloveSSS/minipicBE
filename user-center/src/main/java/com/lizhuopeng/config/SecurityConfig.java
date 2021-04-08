@@ -1,6 +1,6 @@
 package com.lizhuopeng.config;
 
-import com.lizhuopeng.Securityhandler.AuthenticationEntryPointHandler;
+import com.lizhuopeng.Securityhandler.AuthenticationEntryPointHandlerImpl;
 import com.lizhuopeng.Securityhandler.AuthenticationFailureHandlerImpl;
 import com.lizhuopeng.Securityhandler.AuthenticationSuccessHandlerImpl;
 import com.lizhuopeng.Securityhandler.LogoutSuccessHandlerImpl;
@@ -16,11 +16,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-
-import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -54,12 +51,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(new AuthenticationSuccessHandlerImpl())
                //登录失败后的返回结果
                 .failureHandler(new AuthenticationFailureHandlerImpl())
-                //这里配置的logoutUrl为登出接口，并设置可匿名访问
-                .and().logout().logoutUrl(logoutAPI).permitAll()
+                //这里配置的logoutUrl为登出接口
+                .and().logout().logoutUrl(logoutAPI)
                 //登出后的返回结果
                 .logoutSuccessHandler(new LogoutSuccessHandlerImpl())
                 //配置的为当未登录访问受保护资源时，返回json
-                .and().exceptionHandling().authenticationEntryPoint(new AuthenticationEntryPointHandler());
+                .and().exceptionHandling().authenticationEntryPoint(new AuthenticationEntryPointHandlerImpl());
 
     }
 

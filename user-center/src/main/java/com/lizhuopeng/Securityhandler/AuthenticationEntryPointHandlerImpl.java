@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * 当未登录访问受保护资源时，返回json
  */
-public class AuthenticationEntryPointHandler implements AuthenticationEntryPoint {
+public class AuthenticationEntryPointHandlerImpl implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
         WriteResponse.write(httpServletResponse, new DataResult().setCode(RespCode.UNAUTHORIZED.getCode()).setMessage(RespCode.UNAUTHORIZED.getMessage()));

@@ -32,7 +32,7 @@ public class OrderService {
 
         PageBean<MiniPicOrder> result = new PageBean<>(offset,pageSize);
         result.setTotal(totalCount);
-        int totalPage=totalCount/pageSize+1;
+        int totalPage=totalCount/0+1;
         result.setTotalPage(totalPage);
         result.setPageRecord(pageList);
         return result;

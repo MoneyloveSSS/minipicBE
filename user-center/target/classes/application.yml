@@ -48,7 +48,7 @@ eureka:
     register-with-eureka: true #是否将自己注册进Eureka
     fetchRegistry: true
     service-url:
-      defaultZone: http://localhost:11001/eureka,http://localhost:11002/eureka #将自己注册到哪，注册中心Eureka的地址
+      defaultZone: http://eureka11001.com:11001/eureka,http://eureka11002.com:11002/eureka,http://eureka11003.com:11003/eureka/ #将自己注册到哪，注册中心Eureka的地址
 
 
 ribbon:
