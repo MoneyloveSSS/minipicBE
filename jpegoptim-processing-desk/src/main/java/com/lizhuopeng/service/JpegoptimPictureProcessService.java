@@ -21,8 +21,8 @@ public class JpegoptimPictureProcessService {
      * @return
      * @throws IOException
      */
-    public byte[] processingPic(byte[] image) throws IOException {
-        List<String> commandLine = getCommandLine();
+    public byte[] processingPic(byte[] image,Integer compressionRatio) throws IOException {
+        List<String> commandLine = getCommandLine(compressionRatio);
         return execute(commandLine,image);
     }
 
@@ -31,11 +31,15 @@ public class JpegoptimPictureProcessService {
      * 得到jpegoptim命令行
      * @return
      */
-    public List<String> getCommandLine(){
+    public List<String> getCommandLine(Integer compressionRatio){
         List<String> commandLine=new ArrayList<>();
         commandLine.add("wsl");
         commandLine.add("jpegoptim");
-        commandLine.add("-m90");
+
+        String compressionRatioString="-m"+compressionRatio.toString();
+        commandLine.add(compressionRatioString);
+       /* commandLine.add("-m90");*/
+
         commandLine.add("--stdout");
         commandLine.add("--stdin");
         return commandLine;

@@ -24,9 +24,9 @@ public class JpegoptimController {
      * @throws IOException
      */
     @PostMapping("/updatePic")
-    public byte[] img(@RequestPart("picture") MultipartFile picture) throws IOException {
-        log.info("message come {}",picture);
-        return jpegoptimPictureProcessService.processingPic(picture.getBytes());
+    public byte[] img(@RequestPart("picture") MultipartFile picture,@RequestParam("compressionRatio") Integer compressionRatio) throws IOException {
+        log.info("接受图像压缩，压缩率为{}，图像为 {},",compressionRatio,picture);
+        return jpegoptimPictureProcessService.processingPic(picture.getBytes(),compressionRatio);
     }
 
 }

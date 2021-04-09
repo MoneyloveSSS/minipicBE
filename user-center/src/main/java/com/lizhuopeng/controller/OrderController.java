@@ -34,13 +34,13 @@ public class OrderController {
      * @throws IOException
      */
     @PostMapping("user/makeMiniPicOrder")
-    public byte[] img(@RequestPart("picture") MultipartFile picture) throws IOException {
+    public byte[] img(@RequestPart("picture") MultipartFile picture,@RequestParam("compressionRatio") Integer compressionRatio) throws IOException {
         User login_user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         int id = orderService.insertOrder(login_user, picture.getOriginalFilename());
         byte[] img = new byte[0];
         if(id != -1){
             try {
-                img = jpegoptimProcessingDeskFeign.img(picture);
+                img = jpegoptimProcessingDeskFeign.img(picture,compressionRatio);
             }catch (Exception e){
                 log.warn("调用服务jpegoptim-processing-desk出现错误,用户名[{}],文件名[{}]",login_user.getUsername(),picture.getOriginalFilename());
                 orderService.setOrderDiscard(id);

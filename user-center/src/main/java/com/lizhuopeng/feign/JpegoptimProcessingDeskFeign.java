@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 @FeignClient(value = "JPEGOPTIM-PROCESSING-DESK")
 public interface JpegoptimProcessingDeskFeign {
     @PostMapping(value = "/updatePic",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    byte[] img(@RequestPart("picture") MultipartFile picture);
+    byte[] img(@RequestPart("picture") MultipartFile picture,@RequestParam("compressionRatio") Integer compressionRatio);
 
     @GetMapping(value = "/test")
     TestModel returnObject();
