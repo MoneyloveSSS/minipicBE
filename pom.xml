@@ -18,6 +18,7 @@
         <module>eureka-server-01</module>
         <module>eureka-server-02</module>
         <module>eureka-server-03</module>
+        <module>gateway-01</module>
     </modules>
 
 
