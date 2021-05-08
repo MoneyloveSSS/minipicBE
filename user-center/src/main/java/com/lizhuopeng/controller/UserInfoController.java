@@ -25,7 +25,6 @@ public class UserInfoController {
      */
     @GetMapping("user/getBasicInfo")
     public DataResult getBasicInfo(){
-        //验证是否查询的是本人账户的信息
         User login_user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         MiniPicUser user = userInfoService.getUserBasicInfoByUsername(login_user.getUsername());
         log.info("查询用户[{}]的基本信息",login_user.getUsername());
