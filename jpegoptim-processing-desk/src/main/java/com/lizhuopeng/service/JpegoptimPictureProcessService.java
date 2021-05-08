@@ -33,7 +33,7 @@ public class JpegoptimPictureProcessService {
      */
     public List<String> getCommandLine(Integer compressionRatio){
         List<String> commandLine=new ArrayList<>();
-        commandLine.add("wsl");
+        commandLine.add("wsl");//Ubuntu子系统
         commandLine.add("jpegoptim");
 
         String compressionRatioString="-m"+compressionRatio.toString();
