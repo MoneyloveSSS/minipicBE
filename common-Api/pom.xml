@@ -34,4 +34,15 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <!--加本地包引入其他项目当中-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
+
+    </build>
+
 </project>

@@ -50,11 +50,11 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--spring boot 2.2.10-->
+            <!--spring boot 2.2.9-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.2.10.RELEASE</version>
+                <version>2.2.9.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -128,15 +128,26 @@
 
     <build>
         <plugins>
+            <!--寻找SpringBoot主类-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.2.9.RELEASE</version>
+            </plugin>
+            <!--加本地包引入其他项目当中-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
                 <configuration>
-                    <fork>true</fork>
-                    <addResources>true</addResources>
+                    <source>${maven.compiler.source}</source> <!-- 源代码使用的JDK版本 -->
+                    <target>${maven.compiler.target}</target> <!-- 需要生成的目标class文件的编译版本 -->
+                    <encoding>${project.build.sourceEncoding}</encoding><!-- 字符集编码 -->
+                    <skipTests>true</skipTests><!-- 跳过测试 -->
                 </configuration>
             </plugin>
         </plugins>
+
     </build>
 
 </project>
