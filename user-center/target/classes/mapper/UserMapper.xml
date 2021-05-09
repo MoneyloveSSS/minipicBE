@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lizhuopeng.dao.UserDao">
+
+    <select id="getUserByUsername" parameterType="String" resultType="com.lizhuopeng.model.MiniPicUser">
+        select * from mini_pic_user where username=#{username}
+    </select>
+
+    <select id="getUserBasicInfoByUsername" parameterType="String" resultType="com.lizhuopeng.model.MiniPicUser">
+        select username,gender,create_time from mini_pic_user where username=#{username}
+    </select>
+
+
+    <insert id="createUser" parameterType="com.lizhuopeng.model.MiniPicUser" useGeneratedKeys="true" keyProperty="id">
+        insert into mini_pic_user (`username`, `password`,
+        `gender`, `account_non_expired`, `account_non_locked`,
+        `enabled`, `update_time`, `create_time`
+        )
+        values (#{username}, #{password},
+        #{gender}, #{accountNonExpired}, #{accountNonLocked},
+        #{enabled}, #{updateTime}, #{createTime}
+        )
+    </insert>
+
+
+</mapper>
+

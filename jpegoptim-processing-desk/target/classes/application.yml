@@ -1,0 +1,50 @@
+server:
+  port: 9001
+
+
+spring:
+  application:
+    name: jpegoptim-processing-desk
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://172.18.58.103/jpegoptim?characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+    druid:
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: /druid/*,*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico
+        session-stat-enable: true
+        session-stat-max-count: 10
+        principal-session-name: session_name
+        principal-cookie-name: cookie_name
+        profile-enable: true
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: true
+        login-username: admin
+        login-password: 123456
+      aop-patterns: com.lizhuopeng.Serivce
+
+
+  servlet:
+    multipart:
+      max-file-size: 10MB #设置限制上传文件的大小
+      max-request-size: 100MB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+eureka:
+  client:
+    register-with-eureka: true #是否将自己注册进Eureka
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://eureka11001.com:11001/eureka,http://eureka11002.com:11002/eureka,http://eureka11003.com:11003/eureka/

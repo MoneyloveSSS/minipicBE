@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: eureka-server
+
+server:
+  port: 11001
+
+
+eureka:
+  instance:
+    hostname: eureka11001.com    #eureka服务端的实例名字
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka11002.com:11002/eureka/,http://eureka11003.com:11003/eureka/    #设置与eureka server交互的地址，查询服务和注册服务都需要依赖这个地址
