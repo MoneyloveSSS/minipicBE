@@ -44,6 +44,7 @@
         <mybatis.spring.boot.verison>1.3.0</mybatis.spring.boot.verison>
         <feign.form.version>3.8.0</feign.form.version>
         <feign.form.spring.version>3.8.0</feign.form.spring.version>
+        <redis.session.version>2.3.0.RELEASE</redis.session.version>
 
     </properties>
 
@@ -122,6 +123,11 @@
                 <groupId>io.github.openfeign.form</groupId>
                 <artifactId>feign-form-spring</artifactId>
                 <version>${feign.form.spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.session</groupId>
+                <artifactId>spring-session-data-redis</artifactId>
+                <version>${redis.session.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

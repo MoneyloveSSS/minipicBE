@@ -7,6 +7,11 @@ spring:
   application:
     name: user-center
 
+  redis:
+    password: 123456
+    port: 6379
+    host: 127.0.0.1
+
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver

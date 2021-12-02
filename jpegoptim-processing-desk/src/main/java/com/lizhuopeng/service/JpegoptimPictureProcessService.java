@@ -38,7 +38,7 @@ public class JpegoptimPictureProcessService {
 
         String compressionRatioString="-m"+compressionRatio.toString();
         commandLine.add(compressionRatioString);
-       /* commandLine.add("-m90");*/
+
 
         commandLine.add("--stdout");
         commandLine.add("--stdin");
